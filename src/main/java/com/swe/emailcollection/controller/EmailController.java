@@ -29,12 +29,17 @@ public class EmailController {
         if (result.hasErrors()) {
             return "emailcollection";
         }
-        subscriber = new Subscriber(subscriber.getEmail(), request.getRemoteAddr());
+        String userIp = request.getRemoteAddr();
+        subscriber = new Subscriber(subscriber.getEmail(), userIp);
+        System.out.println("Received email: " + subscriber.getEmail() + " from IP: " + subscriber.getIpAddress() + " at " + subscriber.getCreatedAt());
+
         if (!repository.save(subscriber)) {
-            model.addAttribute("error", "This email is already registered.");
+            model.addAttribute("error", "This email is already registered. Please use a different email.");
             return "emailcollection";
         }
+
         model.addAttribute("message", "Email successfully submitted!");
+        model.addAttribute("createdAt", subscriber.getCreatedAt()); 
         return "emailcollection";
     }
 }

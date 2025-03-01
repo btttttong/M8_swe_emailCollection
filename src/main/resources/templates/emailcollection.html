@@ -103,6 +103,9 @@
                 </div>
             </form>
             <p th:if="${message}" style="color: green;" th:text="${message}"></p>
+            <p th:if="${createdAt}" style="color: gray; font-size: 1rem; margin-top: 10px;">
+                Submitted on: <span style="color: #555; font-weight: bold;" th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss z')}"></span>
+            </p>
             <p th:if="${error}" style="color: red;" th:text="${error}"></p>
         </div>
         <div class="image-section"></div>
