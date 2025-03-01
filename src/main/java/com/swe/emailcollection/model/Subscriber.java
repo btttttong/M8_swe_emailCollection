@@ -14,7 +14,7 @@ public class Subscriber {
 
     public Subscriber(String email, String ipAddress) {
         this.email = email;
-        this.createdAt = ZonedDateTime.now(ZoneId.of("UTC"));
+        this.createdAt = ZonedDateTime.now(ZoneId.systemDefault());
         this.ipAddress = ipAddress;
     }
 
